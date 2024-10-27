@@ -1,0 +1,104 @@
+[
+  {
+    "_id": "1",
+    "collegeImage": "https://img.freepik.com/free-photo/university-melbourne-is-located-heart-city_1340-45716.jpg?t=st=1729929437~exp=1729933037~hmac=48c2161ad367e2d6085895a9e861d631bac0a1038be903fa9e349f84cc412364&w=740",
+    "collegeName": "Horizon University",
+    "admissionDates": {
+      "start": "2024-06-15",
+      "end": "2024-09-01"
+    },
+    "events": [
+      {
+        "title": "Science Fair",
+        "date": "2024-08-10",
+        "description": "Showcase of student innovations and scientific research."
+      },
+      {
+        "title": "Homecoming Weekend",
+        "date": "2024-10-05",
+        "description": "A weekend of sports, food, and music to welcome back alumni."
+      }
+    ],
+    "researchHistory": [
+      {
+        "title": "Sustainable Farming Techniques",
+        "year": 2021,
+        "summary": "Research on agricultural methods that reduce environmental impact."
+      },
+      {
+        "title": "Renewable Energy Integration",
+        "year": 2022,
+        "summary": "Exploring efficient methods to incorporate renewable energy sources."
+      }
+    ],
+    "sports": ["Soccer", "Basketball", "Swimming", "Track and Field"]
+  },
+  {
+    "_id": "2",
+    "collegeImage": "https://img.freepik.com/free-photo/aerial-view-residence-bukovinian-dalmatian-metropolitans-chernivtsi-national-university-chernivtsi-touristic-destination-western-ukraine_231208-41.jpg?t=st=1729929705~exp=1729933305~hmac=5721306c2af8e77df5c8f61f4f67457c25f8fcc330d2a58bceec2e3a3cf6040f&w=740",
+    "collegeName": "Evergreen Institute of Technology",
+    "admissionDates": {
+      "start": "2024-07-01",
+      "end": "2024-08-30"
+    },
+    "events": [
+      {
+        "title": "Tech Expo",
+        "date": "2024-07-20",
+        "description": "An exposition of student projects in technology and engineering."
+      },
+      {
+        "title": "Career Day",
+        "date": "2024-09-15",
+        "description": "A day dedicated to career guidance and internships."
+      }
+    ],
+    "researchHistory": [
+      {
+        "title": "AI in Healthcare",
+        "year": 2020,
+        "summary": "Research focused on AI applications in diagnosing and treating diseases."
+      },
+      {
+        "title": "Smart Cities",
+        "year": 2023,
+        "summary": "Developing technology for sustainable urban growth."
+      }
+    ],
+    "sports": ["Tennis", "Volleyball", "Badminton", "Cricket"]
+  },
+  {
+    "_id": "3",
+    "collegeImage": "https://img.freepik.com/free-photo/graduation-concept-with-portrait-happy-girl_23-2148201880.jpg?t=st=1729929756~exp=1729933356~hmac=81851c5ee1f925c8b0e44fae3d8633c019b9f92729734a349f5b4655923fe385&w=740",
+    "collegeName": "Summit School of Arts",
+    "admissionDates": {
+      "start": "2024-05-15",
+      "end": "2024-08-01"
+    },
+    "events": [
+      {
+        "title": "Annual Art Exhibition",
+        "date": "2024-09-10",
+        "description": "Display of student art projects, sculptures, and installations."
+      },
+      {
+        "title": "Theater Festival",
+        "date": "2024-10-25",
+        "description": "A celebration of theatrical performances from various genres."
+      }
+    ],
+    "researchHistory": [
+      {
+        "title": "Cultural Impact of Renaissance Art",
+        "year": 2019,
+        "summary": "Study on how Renaissance art has influenced modern culture."
+      },
+      {
+        "title": "Art Therapy for Mental Health",
+        "year": 2022,
+        "summary": "Exploring art therapy as a method for improving mental wellness."
+      }
+    ],
+    "sports": ["Yoga", "Gymnastics", "Martial Arts", "Dance"]
+  }
+]
