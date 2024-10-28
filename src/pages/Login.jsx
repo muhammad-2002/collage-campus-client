@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -7,30 +8,51 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location);
-  const { googleProvider, githubProvider } = useAuth();
+  const { googleProvider, githubProvider, signInWithEmail } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-
-    const fromData = {
-      email: email,
-      password: password,
-    };
-    console.log(fromData);
+    signInWithEmail(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        if (user) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "You are Successfully Login",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          navigate(location?.state ? location?.state : "/");
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   };
   const handleGoogle = async () => {
     try {
       const data = await googleProvider();
-      console.log(data);
       if (data) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "You are Successfully Login",
-          showConfirmButton: false,
-          timer: 2000,
-        });
+        const userInfo = {
+          email: data.user.email,
+          displayName: data.user.displayName,
+          photoURL: data.user.photoURL,
+          university: "",
+          address: "",
+        };
+        const res = axios.post("http://localhost:5000/user", { ...userInfo });
+        if (res) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "You are Successfully Login",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
       }
 
       navigate(location?.state ? location.state : "/");
@@ -44,13 +66,23 @@ const Login = () => {
       const data = await githubProvider();
       console.log(data);
       if (data) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "You are Successfully Login",
-          showConfirmButton: false,
-          timer: 2000,
-        });
+        const userInfo = {
+          email: data.user.email,
+          displayName: data.user.displayName,
+          photoURL: data.user.photoURL,
+          university: "",
+          address: "",
+        };
+        const res = axios.post("http://localhost:5000/user", { ...userInfo });
+        if (res) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "You are Successfully Login",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
       }
 
       navigate(location?.state ? location.state : "/");
