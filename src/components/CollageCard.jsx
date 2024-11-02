@@ -62,7 +62,7 @@ const CollageCard = () => {
             <div className="h-8 w-full"></div>
             <Link
               to={`/${item._id}`}
-              className="absolute bottom-[10px] w-[370px] "
+              className="absolute bottom-[10px] w-[320px] "
             >
               <button className="btn btn-active btn-neutral w-full">
                 Details

@@ -1,10 +1,26 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import logo from "../../assets/logo.png";
 import { useAuth } from "../hook/useAuth";
 
 const Navbar = () => {
   const { user, logOut, googleProvider } = useAuth();
-  console.log(user);
+  const [dataUser, setDataUser] = useState({});
+
+  useEffect(() => {
+    try {
+      const GetData = async () => {
+        const res = await axios.get(
+          `http://localhost:5000/user/${user?.email}`
+        );
+        setDataUser(res.data);
+      };
+      GetData();
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dataUser, user.email]);
   const links = (
     <>
       <li>
@@ -85,7 +101,7 @@ const Navbar = () => {
           </ul> */}
         </div>
         <Link to={"/"} className="btn btn-ghost text-xl w-[120px] h-[60px]">
-          <img src="/src/assets/logo.png" alt="logo"></img>
+          <img src={logo} alt="logo"></img>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -94,9 +110,9 @@ const Navbar = () => {
 
       <div className="navbar-end gap-3">
         <div>
-          {user && (
+          {dataUser && (
             <Link to="/user-profile" className="font-bold">
-              {user.displayName}
+              {dataUser?.displayName}
             </Link>
           )}
         </div>

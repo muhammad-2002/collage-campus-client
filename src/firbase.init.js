@@ -9,7 +9,7 @@ const firebaseConfig = {
   projectId: "collage-connect-d0c48",
   storageBucket: "collage-connect-d0c48.appspot.com",
   messagingSenderId: "664817582325",
-  appId: "1:664817582325:web:16bde45b8bd859f0e305bc",
+  appId: "1:664817582325:web:16 bde45b8bd859f0e305bc",
   measurementId: "G-X0QRVFR6DN"
 };
 

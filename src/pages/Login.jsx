@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuth } from "./../components/hook/useAuth";
@@ -8,7 +8,9 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location);
-  const { googleProvider, githubProvider, signInWithEmail } = useAuth();
+  const [resetEmail, setResetEmail] = useState("");
+  const { googleProvider, githubProvider, signInWithEmail, resetPassword } =
+    useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -91,6 +93,24 @@ const Login = () => {
       console.log(err);
     }
   };
+  const handleResetPassword = async () => {
+    try {
+      await resetPassword(resetEmail);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Password reset email sent!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "please input valid email",
+      });
+    }
+  };
   return (
     <div className="w-full max-w-md p-8 space-y-3 mx-auto my-10 rounded-xl bg-gray-900 dark:bg-gray-50 text-gray-100 dark:text-gray-800">
       <h1 className="text-2xl font-bold text-center">Login</h1>
@@ -107,16 +127,24 @@ const Login = () => {
             name="email"
             id="email"
             placeholder="email"
+            onChange={(e) => setResetEmail(e.target.value)}
             className="w-full px-4 py-3 border-[2px] border-white rounded-md  dark:border-gray-300 bg-gray-900 dark:bg-gray-50 text-gray-100 dark:text-gray-800 focus:border-violet-400 focus:dark:border-violet-600"
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label
-            htmlFor="password"
-            className="block text-gray-400 dark:text-gray-600"
-          >
-            Password
-          </label>
+          <div className="flex justify-between mb-2">
+            <label htmlFor="password" className="text-sm">
+              Password
+            </label>
+            <div
+              onClick={handleResetPassword}
+              rel="noopener noreferrer"
+              href="#"
+              className="text-xs hover:underline dark:text-gray-600"
+            >
+              Forgot password?
+            </div>
+          </div>
           <input
             type="password"
             name="password"

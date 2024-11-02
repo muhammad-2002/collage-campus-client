@@ -52,7 +52,7 @@ const Admission = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const collegeInfo = {
@@ -62,6 +62,10 @@ const Admission = () => {
 
     // Save the admission info to local storage (or global state)
     localStorage.setItem("admissionInfo", JSON.stringify(collegeInfo));
+    // const res = await axios.post(
+    //   "http://localhost:5000/admission",
+    //   collegeInfo
+    // );
 
     // Reset form after submission
     setFormData({

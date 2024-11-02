@@ -3,6 +3,7 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -39,6 +40,9 @@ const AuthProvider = ({ children }) => {
         console.log(error);
       });
   };
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -60,6 +64,7 @@ const AuthProvider = ({ children }) => {
     setUser,
     githubProvider,
     signInWithEmail,
+    resetPassword,
   };
 
   return (

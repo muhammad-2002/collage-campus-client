@@ -1,9 +1,12 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useAuth } from "./hook/useAuth";
 
 const MyCollege = () => {
   const [collegeInfo, setCollegeInfo] = useState(null);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
+  const { user } = useAuth();
 
   useEffect(() => {
     // Fetch admission info from local storage (or global state)
@@ -11,21 +14,23 @@ const MyCollege = () => {
     setCollegeInfo(storedCollegeInfo);
   }, []);
 
-  const handleReviewSubmit = () => {
+  const handleReviewSubmit = async () => {
     const newReview = {
       review,
       rating,
       date: new Date().toLocaleDateString(),
+      email: user.email,
+      collageName: collegeInfo.college.name,
+      collageImage: collegeInfo.college.image,
     };
 
-    // Save the review to the home page reviews (can use a global state or context)
-    const existingReviews = JSON.parse(localStorage.getItem("reviews")) || [];
-    existingReviews.push(newReview);
-    localStorage.setItem("reviews", JSON.stringify(existingReviews));
-
-    // Reset the review fields
-    setReview("");
-    setRating(0);
+    const res = await axios.post(
+      `http://localhost:5000/review/${user?.email}`,
+      {
+        ...newReview,
+      }
+    );
+    console.log(res.data);
 
     alert("Review added successfully!");
   };

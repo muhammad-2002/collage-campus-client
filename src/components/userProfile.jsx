@@ -28,7 +28,7 @@ const UserProfile = () => {
       }
     };
     fetchUserData();
-  }, [user.email, userData]);
+  }, [user.email]);
 
   // Update formData whenever userData changes
   useEffect(() => {
@@ -43,16 +43,21 @@ const UserProfile = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    console.log(formData);
   };
 
   const handleSave = async () => {
     try {
-      await axios.patch(`http://localhost:5000/user/${user.email}`, {
-        displayName: formData.displayName,
-        email: formData.email,
-        university: formData.university,
-        address: formData.address,
-      });
+      await axios.patch(
+        `https://connect-campus-server.vercel.app
+/user/${user?.email}`,
+        {
+          displayName: formData.displayName,
+          email: formData.email,
+          university: formData.university,
+          address: formData.address,
+        }
+      );
       setEditMode(false);
       setUserData(formData);
     } catch (error) {
@@ -69,7 +74,7 @@ const UserProfile = () => {
       <div className="space-y-4 text-center divide-y divide-gray-700 dark:divide-gray-300">
         <div className="my-2 space-y-1">
           <h2 className="text-xl font-semibold sm:text-2xl">
-            {userData.displayName}
+            {userData?.displayName}
           </h2>
           <p className="px-5 text-xs sm:text-base text-gray-400 dark:text-gray-600">
             Full-stack developer
@@ -120,9 +125,9 @@ const UserProfile = () => {
             </>
           ) : (
             <>
-              <p>Email: {userData.email}</p>
-              <p>University: {userData.university}</p>
-              <p>Address: {userData.address}</p>
+              <p>Email: {userData?.email}</p>
+              <p>University: {userData?.university}</p>
+              <p>Address: {userData?.address}</p>
               <button
                 onClick={() => setEditMode(true)}
                 className="btn btn-secondary mt-4 w-full placeholder-gray-700"
